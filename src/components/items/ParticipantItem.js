@@ -4,11 +4,11 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 
 
-const ParticipantItem = ({ name, title, id }) => {
+const ParticipantItem = ({ name, title, imgUrl, id }) => {
     return (
         <Col style={{ maxWidth: "11rem" }}>
             <Card>
-                <Card.Img variant="top" src={ require('../../assets/img/2.jpg')}></Card.Img>
+                <Card.Img variant="top" src={ imgUrl }></Card.Img>
                 <Card.Body>
                     <Card.Title>{ name }</Card.Title>
                     <Card.Text>

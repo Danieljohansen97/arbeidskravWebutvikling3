@@ -17,7 +17,8 @@ export default function ProjectItem({
     signed,
     id,
     participants,
-    handleRemoveProject
+    handleRemoveProject,
+    employees
 }) {
 
     const [show, setShow] = useState(false);
@@ -36,7 +37,9 @@ export default function ProjectItem({
                 key={`participant-${i}`} 
                 name={ participant.name }
                 title={ participant.title }
+                imgUrl= { participant.imgUrl }
                 id={ participant.id }
+                employees={ employees }
             />
         })
     }

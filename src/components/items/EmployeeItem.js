@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Image from 'react-bootstrap/Image';
 
-const EmployeeItem = ({ name, title, age, id, handleRemoveEmployee }) => {
+const EmployeeItem = ({ name, title, age, id, imgUrl, handleRemoveEmployee }) => {
 
     const [show, setShow] = useState(false);
 
@@ -23,7 +23,7 @@ const EmployeeItem = ({ name, title, age, id, handleRemoveEmployee }) => {
             <Col xs={ 12 } sm={ 6 } md={ 4 } lg={ 3 } className="mb-2">
                 <article>
                     <Card>
-                        <Card.Img variant="top" src={ require('../../assets/img/2.jpg') }></Card.Img>
+                        <Card.Img variant="top" src={ imgUrl }></Card.Img>
                         <Card.Body>
                             <Card.Title>{ name }</Card.Title>
                             <Card.Text>{ title }</Card.Text>
@@ -42,7 +42,7 @@ const EmployeeItem = ({ name, title, age, id, handleRemoveEmployee }) => {
                 <Modal.Body>
                     <p>Title: { title }</p>
                     <p>Age: { age }</p>
-                    <Image src={ require('../../assets/img/2.jpg') } fluid />
+                    <Image src={ imgUrl } fluid />
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={ handleClose }>Close</Button>

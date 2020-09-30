@@ -7,6 +7,10 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 
+import { v4 as uuidv4 } from 'uuid';
+
+import DefaultImage from '../../assets/img/nopb.jpg'
+
 const EmployeeList = ({ employees, handleAddEmployee, handleRemoveEmployee }) => {
 
    
@@ -15,7 +19,7 @@ const EmployeeList = ({ employees, handleAddEmployee, handleRemoveEmployee }) =>
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const initialInputState = {name: "", title: "", age: "", id: 0};
+    const initialInputState = {name: "", title: "", age: "", imgUrl: DefaultImage, id: ""};
     const [newEmployee, setNewEmployee] = useState(initialInputState);
     const {name, title, age} = newEmployee;
 
@@ -24,6 +28,7 @@ const EmployeeList = ({ employees, handleAddEmployee, handleRemoveEmployee }) =>
     }
 
     const handleFinalSubmit = e => {
+        setNewEmployee({...newEmployee, id: uuidv4()});
         handleAddEmployee(newEmployee);
         handleClose();
     }
@@ -36,6 +41,7 @@ const EmployeeList = ({ employees, handleAddEmployee, handleRemoveEmployee }) =>
                 name={ employee.name }
                 title={ employee.title }
                 age={ employee.age }
+                imgUrl={ employee.imgUrl }
                 id={ employee.id }
                 handleRemoveEmployee={ handleRemoveEmployee }
             />

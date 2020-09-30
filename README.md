@@ -2,11 +2,11 @@
 
 ## Installasjon
 
-***- yarn install***
+***- yarn/npm install***
 
 Innstallerer alt av node moduler.
 
-***- yarn start***
+***- yarn/npm start***
 
 Starter appen.
 
