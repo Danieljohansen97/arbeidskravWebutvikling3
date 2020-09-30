@@ -1,5 +1,7 @@
 #  ProjectManager app med React og ReactBootstrap 
 
+<a href="https://github.com/Danieljohansen97/arbeidskravWebutvikling3">Lenke til prosjektets repo på github.</a>
+
 ## Installasjon
 
 ***- yarn/npm install***
