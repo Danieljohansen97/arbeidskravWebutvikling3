@@ -17,7 +17,7 @@ const Projects = ({ projects, handleAddProject, handleRemoveProject }) => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const initialInputState = { customer: "", projectName: "", shortDescription: "", status: "", signed: "", participants: [] };
+    const initialInputState = { customer: "", projectName: "", shortDescription: "", status: "Not Started", signed: "", participants: [] };
     const [newProject, setNewProject] = useState(initialInputState);
     const { customer, projectName, shortDescription, status, signed } = newProject;
 
