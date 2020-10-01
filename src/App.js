@@ -52,52 +52,52 @@ function App() {
       }
     ]
   );
-
-  const handleAddProject = (newProject) => {
-    setProjects([...projects, newProject]);
-  };
-
-  const handleRemoveProject = (projectToRemove) => {
-    setProjects(projects.filter(project => project.id !== projectToRemove));
-  };
-
+  
   const [employees, setEmployees] = useState(
     [
-        { name: "Daniel Johansen", title: "Frontend Developer", age: 23, id: uuidv4(), imgUrl: pb4 },
-        { name: "Svein Axelsson", title: "Machine Learner", age: 53, id: uuidv4(), imgUrl: pb3 },
-        { name: "James Heatfield", title: "Sound Design", age: 40, id: uuidv4(), imgUrl: pb1 },
-        { name: "Mary Garfield", title: "Interactive Designer", age: 33, id: uuidv4(), imgUrl: pb2 },
-        { name: "Mike Hunt", title: "Product Designer", age: 69, id: uuidv4(), imgUrl: pb5 },
+      { name: "Daniel Johansen", title: "Frontend Developer", age: 23, id: uuidv4(), imgUrl: pb4 },
+      { name: "Svein Axelsson", title: "Machine Learner", age: 53, id: uuidv4(), imgUrl: pb3 },
+      { name: "James Heatfield", title: "Sound Design", age: 40, id: uuidv4(), imgUrl: pb1 },
+      { name: "Mary Garfield", title: "Interactive Designer", age: 33, id: uuidv4(), imgUrl: pb2 },
+      { name: "Mike Hunt", title: "Product Designer", age: 69, id: uuidv4(), imgUrl: pb5 },
     ]
   );
-
-  const handleAddEmployee = (newEmployee) => {
-    setEmployees([...employees, newEmployee]);
-  };
-
-  const handleRemoveEmployee = (employeeToRemove) => {
-    setEmployees(employees.filter(employee => employee.id !== employeeToRemove));
-  };
-
+  
   const [customers, setCustomers] = useState(
     [
       { name: "Eventia", description: "Eventia sells different products on public events and happenings around the world.", id: 0 },
       { name: "John & CO", description: "A law firm stationed in Texas US.", id: 1 },
       { name: "Twutter AS", description: "They are the owners of the very popular social media application Twutter.", id: 2 },
     ]
-  )
+  );
 
+  const handleAddProject = (newProject) => {
+    setProjects([...projects, newProject]);
+  };
+
+  const handleAddEmployee = (newEmployee) => {
+    setEmployees([...employees, newEmployee]);
+  };
+  
   const handleAddCustomer = (newCustomer) => {
     setCustomers([...customers, newCustomer]);
+  };
+
+  const handleRemoveProject = (projectToRemove) => {
+    setProjects(projects.filter(project => project.id !== projectToRemove));
+  };
+
+  const handleRemoveEmployee = (employeeToRemove) => {
+    setEmployees(employees.filter(employee => employee.id !== employeeToRemove));
   };
 
   const handleRemoveCustomer = (customerToRemove) => {
     setCustomers(customers.filter(customer => customer.id !== customerToRemove));
   };
-  
+
   return (
     <div className="App">
-      <Navigation 
+      <Navigation
         handleAddProject={handleAddProject}
         handleRemoveProject={handleRemoveProject}
         projects={projects}

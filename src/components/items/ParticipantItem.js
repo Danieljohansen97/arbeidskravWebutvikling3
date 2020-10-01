@@ -4,15 +4,15 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 
 
-const ParticipantItem = ({ name, title, imgUrl, id }) => {
+const ParticipantItem = ({ name, title, imgUrl }) => {
     return (
         <Col style={{ maxWidth: "11rem" }}>
             <Card>
-                <Card.Img variant="top" src={ imgUrl }></Card.Img>
+                <Card.Img variant="top" src={imgUrl}></Card.Img>
                 <Card.Body>
-                    <Card.Title>{ name }</Card.Title>
+                    <Card.Title>{name}</Card.Title>
                     <Card.Text>
-                        { title }
+                        {title}
                     </Card.Text>
                 </Card.Body>
             </Card>

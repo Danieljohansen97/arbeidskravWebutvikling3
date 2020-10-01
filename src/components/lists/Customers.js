@@ -16,30 +16,20 @@ const Customers = ({ customers, handleAddCustomer, handleRemoveCustomer }) => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const initialInputState = {name: "", description: "",}
+    const initialInputState = { name: "", description: "", }
     const [newCustomer, setNewCustomer] = useState(initialInputState);
-    const {name, description} = newCustomer;
+    const { name, description } = newCustomer;
 
     const handleInputChange = e => {
-        setNewCustomer({...newCustomer, [e.target.name]: e.target.value});
+        setNewCustomer({ ...newCustomer, [e.target.name]: e.target.value });
     }
 
     const handleFinalSubmit = e => {
-        setNewCustomer({...newCustomer, id: uuidv4()});
-        handleAddCustomer(newCustomer);
-        handleClose();
+        addCustomerAndCloseModal(setNewCustomer, newCustomer, handleAddCustomer, handleClose);
     }
 
-    function getCustomers(){
-        return customers.map((customer, i) => {
-            return <CustomerItem 
-                key={`customer-${i}`}
-                name={ customer.name }
-                description={ customer.description }
-                id={ customer.id }
-                handleRemoveCustomer={ handleRemoveCustomer }
-            />
-        });
+    function getCustomers() {
+        return mapCustomersAndReturnItem(customers, handleRemoveCustomer);
     }
 
     return (
@@ -84,3 +74,20 @@ const Customers = ({ customers, handleAddCustomer, handleRemoveCustomer }) => {
 }
 
 export default Customers;
+
+function mapCustomersAndReturnItem(customers, handleRemoveCustomer) {
+    return customers.map((customer, i) => {
+        return <CustomerItem
+            key={`customer-${i}`}
+            name={customer.name}
+            description={customer.description}
+            id={customer.id}
+            handleRemoveCustomer={handleRemoveCustomer} />;
+    });
+}
+
+function addCustomerAndCloseModal(setNewCustomer, newCustomer, handleAddCustomer, handleClose) {
+    setNewCustomer({ ...newCustomer, id: uuidv4() });
+    handleAddCustomer(newCustomer);
+    handleClose();
+}

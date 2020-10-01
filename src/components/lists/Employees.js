@@ -13,39 +13,27 @@ import DefaultImage from '../../assets/img/nopb.jpg'
 
 const EmployeeList = ({ employees, handleAddEmployee, handleRemoveEmployee }) => {
 
-   
+
     // State variables
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const initialInputState = {name: "", title: "", age: "", imgUrl: DefaultImage, id: ""};
+    const initialInputState = { name: "", title: "", age: "", imgUrl: DefaultImage, id: "" };
     const [newEmployee, setNewEmployee] = useState(initialInputState);
-    const {name, title, age} = newEmployee;
+    const { name, title, age } = newEmployee;
 
     const handleInputChange = e => {
-        setNewEmployee({...newEmployee, [e.target.name]: e.target.value});
+        setNewEmployee({ ...newEmployee, [e.target.name]: e.target.value });
     }
 
-    const handleFinalSubmit = e => {
-        setNewEmployee({...newEmployee, id: uuidv4()});
-        handleAddEmployee(newEmployee);
-        handleClose();
+    const handleFinalSubmit = () => {
+        addEmployeeAndCloseModal(setNewEmployee, newEmployee, handleAddEmployee, handleClose);
     }
-    
+
     // Get Employees
-    function getEmployees(){
-        return employees.map((employee, i) => {
-            return <EmployeeItem 
-                key={`employee-${i}`}
-                name={ employee.name }
-                title={ employee.title }
-                age={ employee.age }
-                imgUrl={ employee.imgUrl }
-                id={ employee.id }
-                handleRemoveEmployee={ handleRemoveEmployee }
-            />
-        });
+    function getEmployees() {
+        return mapEmployeesAndReturnItems(employees, handleRemoveEmployee);
     }
 
 
@@ -54,16 +42,16 @@ const EmployeeList = ({ employees, handleAddEmployee, handleRemoveEmployee }) =>
             <Row>
                 <Col>
                     {/* Button for triggering the modal */}
-                    <Button variant="primary" size="lg" className="mb-2" onClick={ handleShow } block>Add Employee</Button>
+                    <Button variant="primary" size="lg" className="mb-2" onClick={handleShow} block>Add Employee</Button>
                 </Col>
             </Row>
             <Row>
                 {/* This is what's rendering the employees */}
-                { getEmployees() }
+                {getEmployees()}
             </Row>
 
             {/* Modal for adding new employees */}
-            <Modal show={ show } onHide={ handleClose }>
+            <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Add Employee</Modal.Title>
                 </Modal.Header>
@@ -71,24 +59,24 @@ const EmployeeList = ({ employees, handleAddEmployee, handleRemoveEmployee }) =>
                     <Form>
                         <Form-Group>
                             <Form.Label>Name</Form.Label>
-                            <Form.Control type="text" placeholder="Employee Name" name="name" value={name} onChange={ handleInputChange }></Form.Control>
+                            <Form.Control type="text" placeholder="Employee Name" name="name" value={name} onChange={handleInputChange}></Form.Control>
                             <Form.Text className="text-muted">Enter Employee's full name</Form.Text>
                         </Form-Group>
                         <Form-Group>
                             <Form.Label>Title</Form.Label>
-                            <Form.Control type="text" placeholder="Title" name="title" value={ title } onChange={ handleInputChange }></Form.Control>
+                            <Form.Control type="text" placeholder="Title" name="title" value={title} onChange={handleInputChange}></Form.Control>
                             <Form.Text className="text-muted">What title does the employee have? (e.g: Developer)</Form.Text>
                         </Form-Group>
                         <Form-Group>
                             <Form.Label>Age</Form.Label>
-                            <Form.Control type="text" placeholder="Age" name="age" value={ age } onChange={ handleInputChange }></Form.Control>
+                            <Form.Control type="text" placeholder="Age" name="age" value={age} onChange={handleInputChange}></Form.Control>
                             <Form.Text className="text-muted">How old is the employee?</Form.Text>
                         </Form-Group>
-                        <Button onClick={ handleFinalSubmit }>Save</Button>
+                        <Button onClick={handleFinalSubmit}>Save</Button>
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={ handleClose }>Close</Button>
+                    <Button variant="secondary" onClick={handleClose}>Close</Button>
                 </Modal.Footer>
             </Modal>
         </>
@@ -96,3 +84,23 @@ const EmployeeList = ({ employees, handleAddEmployee, handleRemoveEmployee }) =>
 }
 
 export default EmployeeList;
+
+function mapEmployeesAndReturnItems(employees, handleRemoveEmployee) {
+    return employees.map((employee, i) => {
+        return <EmployeeItem
+            key={`employee-${i}`}
+            name={employee.name}
+            title={employee.title}
+            age={employee.age}
+            imgUrl={employee.imgUrl}
+            id={employee.id}
+            handleRemoveEmployee={handleRemoveEmployee} />;
+    });
+}
+
+function addEmployeeAndCloseModal(setNewEmployee, newEmployee, handleAddEmployee, handleClose) {
+    setNewEmployee({ ...newEmployee, id: uuidv4() });
+    handleAddEmployee(newEmployee);
+    handleClose();
+}
+

@@ -14,26 +14,26 @@ import Projects from './lists/Projects';
 const Navigation = ({
     projects,
     handleAddProject,
-    handleRemoveProject, 
-    employees, 
-    handleAddEmployee, 
+    handleRemoveProject,
+    employees,
+    handleAddEmployee,
     handleRemoveEmployee,
     customers,
     handleAddCustomer,
-    handleRemoveCustomer 
-}) =>  
-     (
+    handleRemoveCustomer
+}) =>
+    (
         <div>
             <BrowserRouter>
-                <nav>       
+                <nav>
                     <Navbar bg="dark" expand="lg" variant="dark" sticky="top" className="mb-2">
-                        <Navbar.Brand as={ Link } to="/">ProjectManager</Navbar.Brand>
+                        <Navbar.Brand as={Link} to="/">ProjectManager</Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="mr-auto">
-                                <Nav.Link as={ Link } to="/">Projects</Nav.Link>
-                                <Nav.Link as={ Link } to="/employees">Employees</Nav.Link>
-                                <Nav.Link as={ Link } to="/customers">Customers</Nav.Link>
+                                <Nav.Link as={Link} to="/">Projects</Nav.Link>
+                                <Nav.Link as={Link} to="/employees">Employees</Nav.Link>
+                                <Nav.Link as={Link} to="/customers">Customers</Nav.Link>
                             </Nav>
                         </Navbar.Collapse>
                     </Navbar>
@@ -41,40 +41,40 @@ const Navigation = ({
                 <Container bg="dark">
                     <main>
                         <Switch>
-                            <Route 
-                                exact 
-                                path="/" 
-                                render={ 
+                            <Route
+                                exact
+                                path="/"
+                                render={
                                     (props) => <Projects
-                                        employees={employees} 
+                                        employees={employees}
                                         handleAddProject={handleAddProject}
                                         handleRemoveProject={handleRemoveProject}
                                         projects={projects}
                                         {...props}
-                                    /> 
-                                } 
+                                    />
+                                }
                             />
-                            <Route 
-                                path="/employees" 
+                            <Route
+                                path="/employees"
                                 render={
                                     (props) => <Employees
-                                        handleAddEmployee={handleAddEmployee} 
-                                        handleRemoveEmployee={handleRemoveEmployee} 
-                                        employees={employees} 
-                                        {...props} 
-                                    /> 
-                                } 
+                                        handleAddEmployee={handleAddEmployee}
+                                        handleRemoveEmployee={handleRemoveEmployee}
+                                        employees={employees}
+                                        {...props}
+                                    />
+                                }
                             />
-                            <Route 
-                                path="/customers" 
-                                render={ 
-                                    (props) => <Customers 
+                            <Route
+                                path="/customers"
+                                render={
+                                    (props) => <Customers
                                         handleAddCustomer={handleAddCustomer}
                                         handleRemoveCustomer={handleRemoveCustomer}
                                         customers={customers}
                                         {...props}
-                                    /> 
-                                } 
+                                    />
+                                }
                             />
                         </Switch>
                     </main>

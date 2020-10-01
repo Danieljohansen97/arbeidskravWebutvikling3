@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 
 export default function CustomerItem({ name, description, id, handleRemoveCustomer }) {
 
-    const handleDeleteClick = e => {
+    const handleDeleteClick = () => {
         handleRemoveCustomer(id);
     }
 

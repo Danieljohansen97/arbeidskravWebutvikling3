@@ -10,7 +10,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import ProjectItem from '../items/ProjectItem';
 
-const Projects = ({ projects, handleAddProject, handleRemoveProject, employees }) => {
+const Projects = ({ projects, handleAddProject, handleRemoveProject }) => {
 
     // State variables
     const [show, setShow] = useState(false);
@@ -19,34 +19,19 @@ const Projects = ({ projects, handleAddProject, handleRemoveProject, employees }
 
     const initialInputState = { customer: "", projectName: "", shortDescription: "", status: "", signed: "", participants: [] };
     const [newProject, setNewProject] = useState(initialInputState);
-    const { customer, projectName, shortDescription, status, signed, participants } = newProject;
+    const { customer, projectName, shortDescription, status, signed } = newProject;
 
     const handleInputChange = e => {
         setNewProject({ ...newProject, [e.target.name]: e.target.value });
     }
 
-    const handleFinalSubmit = e => {
-        setNewProject({...newProject, id: uuidv4()})
-        handleAddProject(newProject);
-        handleClose();
+    const handleFinalSubmit = () => {
+        addProjectAndCloseModal(setNewProject, newProject, handleAddProject, handleClose);
     }
 
     // Get Projects
     function getProjects() {
-        return projects.map((project, i) => {
-            return <ProjectItem
-                key={`project-${i}`}
-                customer={project.customer}
-                projectName={project.projectName}
-                shortDescription={project.shortDescription}
-                status={project.status}
-                signed={project.signed}
-                id={project.id}
-                participants={project.participants}
-                handleRemoveProject={handleRemoveProject}
-
-            />
-        });
+        return mapProjectsAndReturnItems(projects, handleRemoveProject);
     }
 
     return (
@@ -109,3 +94,24 @@ const Projects = ({ projects, handleAddProject, handleRemoveProject, employees }
 }
 
 export default Projects;
+
+function mapProjectsAndReturnItems(projects, handleRemoveProject) {
+    return projects.map((project, i) => {
+        return <ProjectItem
+            key={`project-${i}`}
+            customer={project.customer}
+            projectName={project.projectName}
+            shortDescription={project.shortDescription}
+            status={project.status}
+            signed={project.signed}
+            id={project.id}
+            participants={project.participants}
+            handleRemoveProject={handleRemoveProject} />;
+    });
+}
+
+function addProjectAndCloseModal(setNewProject, newProject, handleAddProject, handleClose) {
+    setNewProject({ ...newProject, id: uuidv4() });
+    handleAddProject(newProject);
+    handleClose();
+}
